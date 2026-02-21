@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diary Ebi 🤍</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+font-family:"Times New Roman",serif;
+}
+
+body{
+margin:0;
+background:#e7d3b3;
+overflow:hidden;
+}
+
+/* LOVE */
+.heart{
+position:fixed;
+bottom:-20px;
+animation:float 6s linear infinite;
+pointer-events:none;
+z-index:999;
+}
+
+@keyframes float{
+to{
+transform:translateY(-110vh);
+opacity:0;
+}
+}
+
+/* SPARK */
+.spark{
+position:fixed;
+top:-20px;
+animation:fall 5s linear infinite;
+pointer-events:none;
+z-index:998;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+opacity:0;
+}
+}
+
+/* PASSWORD */
+#lock{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+button,input{
+padding:12px;
+border-radius:25px;
+border:none;
+margin-top:10px;
+}
+
+/* LETTER */
+#letterScene{
+display:none;
+height:100vh;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+/* BOOK */
+#scene{
+display:none;
+height:100vh;
+justify-content:center;
+align-items:center;
+perspective:2500px;
+}
+
+#book{
+width:90vw;
+max-width:400px;
+height:85vh;
+position:relative;
+}
+
+.page{
+position:absolute;
+width:100%;
+height:100%;
+background:#fffaf3;
+border-radius:12px;
+padding:20px;
+transform-origin:left;
+transition:1.2s;
+backface-visibility:hidden;
+box-shadow:0 15px 30px rgba(0,0,0,.25);
+overflow-y:auto;
+scrollbar-width:none;
+}
+
+.page::-webkit-scrollbar{
+display:none;
+}
+
+.page:nth-child(1){z-index:9}
+.page:nth-child(2){z-index:8}
+.page:nth-child(3){z-index:7}
+.page:nth-child(4){z-index:6}
+.page:nth-child(5){z-index:5}
+.page:nth-child(6){z-index:4}
+.page:nth-child(7){z-index:3}
+.page:nth-child(8){z-index:2}
+
+.page.flipped{
+transform:rotateY(-180deg);
+}
+
+.page img{
+width:100%;
+border-radius:12px;
+}
+
+.page p{
+line-height:1.8;
+font-size:17px;
+color:#4a3b2f;
+}
+
+/* VIDEO */
+#videoPopup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgb(198, 110, 148);
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+}
+
+video{
+width:90%;
+max-width:500px;
+border-radius:15px;
+}
+
+/* ENDING */
+#ending{
+display:none;
+position:fixed;
+width:100%;
+height:100%;
+background:radial-gradient(circle,#ffafcc,#ff7096);
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:10000;
+animation:fade 2s;
+}
+
+#ending h1{
+color:white;
+font-size:48px;
+text-shadow:0 0 15px pink,0 0 30px hotpink,0 0 60px red;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+50%{transform:scale(1.1);}
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+.envelope{
+width:220px;
+cursor:pointer;
+animation:floatLetter 3s ease-in-out infinite alternate;
+}
+
+@keyframes floatLetter{
+from{transform:translateY(0);}
+to{transform:translateY(-10px);}
+}
+
+.confetti{
+position:fixed;
+top:-20px;
+animation:fallConfetti 4s linear forwards;
+font-size:24px;
+z-index:10001;
+}
+
+@keyframes fallConfetti{
+to{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD -->
+<div id="lock">
+<img src="cake.gif" width="150">
+<h2>Happy Ebi Day</h2>
+<input id="pw" type="password" placeholder="Password">
+<button onclick="unlock()">Buka Diary</button>
+</div>
+
+<audio id="music" src="music.mp3" loop></audio>
+
+<!-- LETTER -->
+<div id="letterScene">
+<img src="letter.png" class="envelope" onclick="openLetter()">
+<p>Ketuk suratnya,lihat diary, scroll kebawah untuk baca, dan slide ke kanan untuk melanjutkan</p>
+</div>
+
+<!-- BOOK -->
+<div id="scene">
+<div id="book">
+
+ <div class="page">
+<img src="ebi1.jpg">
+<p>
+22 Februari 2003.
+Di hari itu, dunia mungkin terlihat sama seperti biasanya.
+Matahari tetap terbit, waktu tetap berjalan, dan orang-orang mungkin nggak sadar…
+tapi sebenarnya, sesuatu yang sangat berharga baru aja lahir. 
+
+Di tanggal itu, kamu datang ke dunia.
+Datang dengan napas kecil,
+dengan tangis pertama,
+dan dengan takdir yang pelan-pelan akan mengubah banyak hal.
+
+Mungkin saat itu kamu belum tau apa-apa.
+Belum tau soal lelah, belum tau soal patah,
+belum tau bagaimana kerasnya hidup nanti.
+
+Tapi sejak detik pertama itu, dunia udah menyimpan ruang khusus buat kamu.
+22 Februari 2003 bukan cuma tanggal lahir.
+Itu adalah hari di mana kehadiran kamu mulai berarti. Dan hari ini,
+bertahun-tahun setelahnya, aku mau kamu tau satu hal sederhana tapi penting,
+kamu gak pernah datang ke dunia ini tanpa alasan.
+
+Kamu lahir,
+dan itu aja udah cukup untuk membuat dunia jadi sedikit lebih hangat.
+</p>
+</div>
+
+<div class="page">
+<img src="ebi2.jpg">
+<p>
+MUHAMMAD PEBRIAN AKBAR.
+Nama ini bukan cuma sekadar nama.
+Nama itu lahir lebih dulu dari cerita-cerita sedih kamu,
+lebih dulu dari lelah yang nanti kamu kenal,
+lebih dulu dari air mata yang suatu hari harus kamu tahan sendirian.
+
+Nama ini adalah doa.
+Doa yang diucapkan sebelum dunia sempat menyentuh kamu,
+sebelum hidup mengajarkan kerasnya bertahan,
+sebelum kamu belajar bagaimana caranya kuat tanpa diminta.
+
+Muhammad.
+Harapan agar kamu tumbuh dengan hati yang baik
+meski nanti dunia sering memperlakukan kamu tidak baik.
+Harapan agar kamu tetap lembut, bahkan ketika keadaan memaksa kamu jadi keras. 
+
+Pebrian.
+Kamu lahir di bulan yang singkat,
+seolah hidup sejak awal udah mengajarkan kamu bahwa waktu tidak selalu panjang,
+bahwa ga semua hal datang dengan mudah.
+Tapi justru dari situlah kamu belajar bertahan, walau ruang kamu sempit.
+
+Akbar.
+Bukan tentang menjadi paling hebat di mata orang lain.
+Tapi tentang menjadi besar dalam sabar yang ga terlihat
+dalam luka yang tak diceritakan,
+dan dalam doa-doa yang hanya kamu dan Tuhan yang tau.
+Mungkin kamu sering merasa ga cukup, ga kuat,ga sepenting itu.
+Tapi nama kamu sendiri menyimpan jawaban untuk semua keraguan itu.
+
+Setiap kali kamu cape, setiap kali kamu mau nyerah,inget ya,
+nama ini diberikan bukan tanpa alasan.
+Kamu dipanggil dengan nama yang penuh harapan karena sejak awal,
+kamu memang dimaksudkan untuk bertahan, untuk hidup, dan untuk berarti.
+Bahkan di hari-hari saat kamu merasa paling sendiri.
+</p>
+</div>
+
+<div class="page">
+<img src="ebi3.jpg">
+<p>
+Liat anak kecil di foto ini.
+Dia jongkok di pinggir sawah,pakai baju sederhana,
+tangannya melingkar peluk dirinya sendiri, dan matanya,masih tenang.
+Senyumnya kecil, bukan senyum yang dibuat-buat.
+Senyum anak kecil yang belum tau apa-apa tentang hidup.
+Dia belum tau kalau suatu hari nanti dia akan sering pura-pura kuat.
+Belum tau kalau cape bisa datang bertubi-tubi.
+Belum tau kalau ga semua hal berjalan seindah yang dia bayangkan.
+
+Di momen foto ini,
+dia cuma anak kecil yang mungkin lagi senang,
+atau cuma pengen diperhatiin,
+atau cuma mau hari itu berlalu dengan baik.
+Dia nggak tau betapa banyak hal yang nanti harus dia lewati.
+Nggak tau betapa sering dia akan bertahan tanpa banyak yang tau.
+
+Tapi satu hal yang jelas,
+Anak kecil di foto ini ga pernah berniat buat nyerah.
+Dan hari ini,
+bertahun-tahun setelah foto ini diambil, aku mau kamu liat dia lagi.
+Liat betapa polosnya dia. Betapa tulusnya dia.
+Dan tolong ingat, dia masih ada di dalam diri kamu.
+Anak kecil itu,masih pantas dicintai,
+masih pantas dirayakan,
+dan masih pantas bahagia.
+Sama seperti kamu sekarang.
+</p>
+</div>
+
+<div class="page">
+<img src="ebi4.jpg">
+<p>
+12 November 2023.
+Ada tanggal-tanggal yang nggak perlu dijelasin panjang-panjang.
+Tanggal yang cukup diinget,
+karena sejak hari itu, segalanya terasa sedikit berbeda.
+Di hari itu, kamu ketemu aku.
+Nggak dengan cara yang dramatis.
+Nggak dengan cerita yang berlebihan.
+Tapi cukup untuk bikin satu hal jadi jelas, kamu nggak sendirian.
+Sejak hari itu, ada seseorang yang hadir buat kamu.
+Yang berjalan di samping kamu. Yang memilih ada,tanpa harus diminta.
+Kamu nggak harus selalu bicara. Nggak harus selalu menjelaskan.
+Cukup tau aja,
+
+ada aku.
+Di hari-hari biasa,
+di momen kecil,
+di setiap langkah yang kamu jalani.
+
+Karena pertemuan itu bukan kebetulan.
+Dan sejak hari itu,
+dunia mungkin nggak berubah sepenuhnya, tapi satu hal pasti,
+kamu ditemani.
+</p>
+</div>
+
+<div class="page">
+<img src="ebi5.jpg">
+<p>
+Selamat ulang tahun ke-23,sayang🤍
+
+Di usia ini, semoga hidup selalu berjalan pelan ke arah yang baik.
+Semoga kamu selalu dikelilingi hal-hal yang positif,
+dan hari-hari kamu dipenuhi senyum yang tulus (kayak senyuman aku hihi).
+Terima kasih udah hadir di dunia ini,
+udah tumbuh jadi diri kamu yang sekarang,
+dan udah memberi arti dengan cara kamu sendiri.
+
+Aku harap kamu selalu merasa cukup,
+merasa berharga, dan merasa dicintai.
+Hari ini tentang kamu. Tentang semua hal baik yang ada di diri kamu.
+
+Selamat ulang tahun sayanggg, i love you more babyboy.
+</p>
+</div>
+
+<!-- HALAMAN VIDEO -->
+<div class="page">
+<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;">
+<h2>Satu kenangan terakhir</h2>
+<button onclick="showVideo()">Klik untuk melihat video ini</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- GIFT -->
+<div id="giftBox"
+style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.85);
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9998;
+">
+
+<img src="gift.gif" width="220"
+onclick="openGift()"
+style="cursor:pointer;">
+
+<p style="color:white;font-size:20px;">
+Klik kadonya 🎁
+</p>
+
+</div>
+
+<!-- VIDEO -->
+<div id="videoPopup">
+<video id="ourVideo" controls>
+<source src="ebi-video.mp4" type="video/mp4">
+</video>
+</div>
+
+<!-- ENDING -->
+<div id="ending">
+<h1>HAPPY BIRTHDAY SAYANG I LOVE YOU🤍</h1>
+</div>
+
+<script>
+
+const pages=document.querySelectorAll(".page");
+let index=0,startX=0;
+
+/* LOVE */
+function hearts(){
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(Math.random()*20+15)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},300);
+}
+
+/* CONFETTI */
+function confettiLove(){
+for(let i=0;i<40;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.innerHTML="💖";
+c.style.left=Math.random()*100+"vw";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),4000);
+}
+}
+
+/* SPARK */
+function spark(){
+setInterval(()=>{
+let s=document.createElement("div");
+s.className="spark";
+s.innerHTML="✨";
+s.style.left=Math.random()*100+"vw";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),5000);
+},400);
+}
+
+/* PASSWORD */
+function unlock(){
+if(pw.value==="121123"){
+lock.style.display="none";
+letterScene.style.display="flex";
+music.play();
+hearts();
+spark();
+}else{
+alert("PASSWORD SALAH!");
+pw.value="";
+pw.focus();
+}
+}
+
+/* OPEN LETTER */
+function openLetter(){
+letterScene.style.display="none";
+scene.style.display="flex";
+}
+
+/* SLIDE PAGE */
+document.addEventListener("mousedown", e => {
+startX = e.clientX;
+});
+
+document.addEventListener("mouseup", e => {
+if (startX - e.clientX > 40 && index < pages.length) {
+pages[index].classList.add("flipped");
+index++;
+}
+});
+
+document.addEventListener("touchstart", e => {
+startX = e.touches[0].clientX;
+});
+
+document.addEventListener("touchend", e => {
+let endX = e.changedTouches[0].clientX;
+if (startX - endX > 40 && index < pages.length) {
+pages[index].classList.add("flipped");
+index++;
+ }
+});
+
+/* VIDEO */
+function showVideo(){
+giftBox.style.display="flex";
+}
+
+function openGift(){
+giftBox.style.display="none";
+videoPopup.style.display="flex";
+ourVideo.play();
+}
+
+/* END VIDEO */
+ourVideo.onended=function(){
+videoPopup.style.display="none";
+ending.style.display="flex";
+hearts();
+spark();
+confettiLove();
+}
+
+</script>
+<!-- HALAMAN ENDING SETELAH VIDEO -->
+<div id="endingMessage" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#ffe6f0,#fff0f5);
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+text-align:center;
+font-family:cursive;
+">
+
+<h1 style="
+font-size:45px;
+color:#ff4d88;
+animation:fadeIn 2s ease-in-out;
+">
+ HAPPY BIRTHDAY SAYANG 
+</h1>
+
+<h2 style="
+font-size:35px;
+color:#ff1493;
+margin-top:20px;
+animation:fadeIn 3s ease-in-out;
+">
+I LOVEEE YOUUU SAYANGGG❤️
+</h2>
+
+<div class="love-container"></div>
+
+</div>
+
+<style>
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+.love{
+position:absolute;
+bottom:-20px;
+font-size:25px;
+animation:fly 6s linear infinite;
+color:pink;
+}
+
+@keyframes fly{
+0%{
+transform:translateY(0) scale(1);
+opacity:1;
+}
+100%{
+transform:translateY(-100vh) scale(1.5);
+opacity:0;
+}
+}
+
+</style>
+
+<script>
+
+const video = document.querySelector("video");
+
+video.onended = function(){
+document.getElementById("endingMessage").style.display="flex";
+createLove();
+};
+
+function createLove(){
+const container = document.querySelector(".love-container");
+
+setInterval(()=>{
+let love=document.createElement("div");
+love.className="love";
+love.innerHTML="❤️";
+love.style.left=Math.random()*100+"%";
+container.appendChild(love);
+
+setTimeout(()=>{
+love.remove();
+},6000);
+
+},400);
+}
+
+</script>
+
+<script>
+const birthdayMusic =
+document.getElementById("birthdayMusic");
+
+document.addEventListener("click", () => {
+birthdayMusic.volume = 0.4;
+birthdayMusic.play().catch(()=>{});
+},{ once:true });
+
+</script>
+
+</body>
+</html>   
